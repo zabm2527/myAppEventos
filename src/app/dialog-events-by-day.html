@@ -1,0 +1,86 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="NOMBRE">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">{{element.NOMBRE_EVENTO}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="DESCRIPCION">
+      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+      <td mat-cell *matCellDef="let element">{{element.DESCRIPCION}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="CIUDAD">
+      <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+      <td mat-cell *matCellDef="let element">{{element.NOM_CIUDAD}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="COLOR">
+      <th mat-header-cell *matHeaderCellDef>Color</th>
+      <td mat-cell *matCellDef="let element">{{element.NOM_COLOR}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="FEC_INI">
+      <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
+      <td mat-cell *matCellDef="let element">{{element.FECHA_INI}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="FEC_FIN">
+      <th mat-header-cell *matHeaderCellDef>Fecha de fin</th>
+      <td mat-cell *matCellDef="let element">{{element.FECHA_FIN}}</td>
+    </ng-container>
+
+    <!-- BOTONES DE ACCIONES -->
+    <ng-container matColumnDef="EDIT">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-mini-fab
+          aria-label="Editar evento registrado"
+          title="Editar evento registrado"
+          (click)="editEvento({
+                        cod_evento: element.COD_EVENTO,
+                        nombre_evento: element.NOMBRE_EVENTO,
+                        descripcion: element.DESCRIPCION,
+                        cod_ciudad: element.COD_CIUDAD,
+                        nom_ciudad: element.NOM_CIUDAD,
+                        cod_color: element.COD_COLOR,
+                        nom_color: element.NOM_COLOR,
+                        fecha_ini: element.FECHA_INI,
+                        fecha_fin: element.FECHA_FIN
+                    })"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DELETE">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-mini-fab
+          aria-label="Eliminar evento registrado"
+          title="Eliminar evento registrado"
+          (click)="deleteEvento(element.COD_EVENTO)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<div class="styleAdd">
+  <button
+    mat-mini-fab
+    aria-label="Agregar nuevo registro"
+    title="Agregar nuevo registro"
+    (click)="addEvento()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<notifier-container></notifier-container>

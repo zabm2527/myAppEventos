@@ -1,0 +1,57 @@
+<h2>Agregar Evento</h2>
+<mat-form-field appearance="fill">
+  <mat-label>Nombre</mat-label>
+  <input matInput type="text" [(ngModel)]="nomEvento" />
+</mat-form-field>
+<br />
+<mat-form-field appearance="fill">
+  <mat-label>Descripcion</mat-label>
+  <input matInput type="text" [(ngModel)]="descripcion" />
+</mat-form-field>
+<br />
+<mat-form-field appearance="fill">
+  <mat-label>Ciudad</mat-label>
+  <mat-select [(ngModel)]="codCiudad">
+    <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.COD_CIUDAD"
+      >{{ciudad.NOM_CIUDAD}}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<br />
+<mat-form-field appearance="fill">
+  <mat-label>Color</mat-label>
+  <mat-select [(ngModel)]="codColor">
+    <mat-option *ngFor="let color of colores" [value]="color.COD_COLOR"
+      >{{color.NOM_COLOR}}</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<br />
+<mat-form-field appearance="fill">
+  <mat-label>Hora inicial</mat-label>
+  <input
+    matInput
+    class="timepicker"
+    [ngxTimepicker]="picker"
+    [format]="24"
+    [(ngModel)]="hora_inicio"
+  />
+</mat-form-field>
+<br />
+<mat-form-field appearance="fill">
+  <mat-label>Hora final</mat-label>
+  <input
+    matInput
+    class="timepicker"
+    [ngxTimepicker]="pickertwo"
+    [format]="24"
+    [(ngModel)]="hora_fin"
+  />
+</mat-form-field>
+
+<ngx-material-timepicker #picker></ngx-material-timepicker>
+<ngx-material-timepicker #pickertwo></ngx-material-timepicker>
+
+<br />
+<button mat-flat-button (click)="addRow()">Agregar evento</button>
+<notifier-container></notifier-container>
